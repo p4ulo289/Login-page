@@ -161,14 +161,40 @@ document.getElementById('btn-submit').addEventListener('click', function () {
     document.getElementById('btn-txt').style.display = 'block';
     document.getElementById('spin').style.display = 'none';
 
-    // Login "local" (sem conta demo). Mantém a sessão só no navegador.
+    // Login "local" 
+
     try {
       localStorage.setItem(LS_KEY_AUTH, JSON.stringify({ loggedIn: true, email }));
 
     } catch {
-      // se falhar, ainda renderiza mesmo assim
     }
     renderLoggedIn(email);
   }, 1200);
 });  
 
+
+//  RECUPERAR SENHA 
+function handleForgot() {
+  const e = document.getElementById('f-email').value.trim();
+  if (!isEmail(e)) { toast('E-mail inválido.', 'error'); return; }
+  closeModal('m-forgot');
+  toast('Link enviado para ' + e, 'success');
+}
+
+// CRIAR CONTA
+function handleRegister() {
+  const n = document.getElementById('r-name').value.trim();
+  const e = document.getElementById('r-email').value.trim();
+  const p = document.getElementById('r-pass').value;
+  if (!n || !isEmail(e) || p.length < 6) { toast('Preencha todos os campos corretamente.', 'error'); return; }
+
+  // Salva usuário para permitir login depois
+  try {
+    createUser(e, p);
+  } catch {
+    // ignore
+  }
+
+  closeModal('m-register');
+  toast('Conta criada! Bem-vindo(a), ' + n.split(' ')[0] + '!', 'success', 4000);
+}
