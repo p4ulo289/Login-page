@@ -61,3 +61,30 @@ passEl.addEventListener('input', function () {
   fill.style.width = (s / 5 * 100) + '%';
   fill.style.background = ['#f55', '#f80', '#fc0', '#8d4', '#4d4'][s - 1] || '#f55';
 });
+
+// VALIDAÇÃO
+const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+function setField(inp, errId, ok) {
+  inp.classList.toggle('error', !ok);
+  inp.classList.toggle('ok', ok);
+  document.getElementById(errId).classList.toggle('show', !ok);
+}
+
+// LOGIN / CADASTRO (com localStorage)
+const LS_KEY_AUTH = 'jovi_auth';
+const LS_KEY_USERS = 'jovi_users';
+
+
+function renderLoggedIn(email) {
+  toast('Login realizado! Bem-vindo à JOVI.', 'success', 4000);
+  const firstName = (email || '').split('@')[0] || 'Cliente';
+  document.getElementById('form').innerHTML = `
+    <div style="text-align:center;padding:32px 0">
+      <div style="font-size:56px;margin-bottom:14px">🎉</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:34px;margin-bottom:8px">Você entrou!</div>
+      <div style="color:var(--muted);font-size:13px">Bem-vindo(a), ${firstName}.</div>
+      <button class="btn" style="margin-top:28px;max-width:180px" onclick="handleLogout()">SAIR</button>
+    </div>`;
+}
+

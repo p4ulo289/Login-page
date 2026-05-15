@@ -65,3 +65,43 @@
       <div class="slide-desc">Carregamento de 120W. De 0 a 100% em 18 minutos.</div>
     </div>
   </div>
+
+  <div class="dots" id="dots"></div>
+</div>
+
+<div class="panel">
+  <div class="login-eyebrow">Área do Cliente</div>
+  <div class="login-title">Bem-vindo<br>de volta.</div>
+  <div class="login-sub">Entre na sua conta JOVI</div>
+
+  <div id="form">
+    <div class="field">
+      <label>E-mail</label>
+      <input type="email" id="email" placeholder="seu@email.com"/>
+      <div class="err-msg" id="e-err">Insira um e-mail válido.</div>
+    </div>
+    <div class="field">
+      <label>Senha</label>
+      <div class="pass-wrap">
+        <input type="password" id="pass" placeholder="••••••••"/>
+        <button class="eye" id="eye">👁</button>
+      </div>
+      <div class="strength" id="sbar"><div class="strength-fill" id="sfill"></div></div>
+      <div class="err-msg" id="p-err">Mínimo 6 caracteres.</div>
+    </div>
+    <div class="row">
+      <label class="remember"><input type="checkbox"/> Lembrar de mim</label>
+      <button class="forgot" onclick="openModal('m-forgot')">Esqueci a senha</button>
+    </div>
+    <button class="btn" id="btn-submit">
+      <span id="btn-txt">ENTRAR</span>
+      <div class="spinner" id="spin"></div>
+    </button>
+    <div class="divider">ou</div>
+    <div class="reg-link">Não tem conta? <button onclick="openModal('m-register')">Criar agora</button></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
