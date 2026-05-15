@@ -88,3 +88,29 @@ function renderLoggedIn(email) {
     </div>`;
 }
 
+function getUsers() {
+  try {
+    const raw = localStorage.getItem(LS_KEY_USERS);
+    if (!raw) return {};
+    const data = JSON.parse(raw);
+    return (data && typeof data === 'object') ? data : {};
+  } catch {
+    return {};
+  }
+}
+
+function setUsers(users) {
+  localStorage.setItem(LS_KEY_USERS, JSON.stringify(users));
+}
+
+function createUser(email, pass) {
+  const users = getUsers();
+  users[email] = { pass };
+  setUsers(users);
+}
+
+function verifyUser(email, pass) {
+  const users = getUsers();
+  return users[email] && users[email].pass === pass;
+}
+
