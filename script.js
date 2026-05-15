@@ -36,3 +36,12 @@ function closeModal(id) { document.getElementById(id).classList.remove('open'); 
 document.querySelectorAll('.overlay').forEach(o =>
   o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); })
 );
+
+// PASSWORD TOGGLE
+const passEl = document.getElementById('pass');
+document.getElementById('eye').addEventListener('click', function () {
+  const show = passEl.type === 'text';
+  passEl.type = show ? 'password' : 'text';
+  this.textContent = show ? '👁' : '🙈';
+});
+
