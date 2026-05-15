@@ -28,3 +28,11 @@ body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(
 .dots { position: absolute; bottom: 44px; right: 44px; z-index: 10; display: flex; gap: 7px; }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.25); border: none; cursor: pointer; transition: background .3s, transform .3s; }
 .dot.active { background: var(--blue); transform: scale(1.35); }
+
+/* ── LOGIN PANEL ── */
+.panel { background: var(--panel); display: flex; flex-direction: column; justify-content: center; padding: 56px 52px; position: relative; overflow: hidden; }
+.panel::after { content: ''; position: absolute; top: -100px; right: -100px; width: 350px; height: 350px; border-radius: 50%; background: radial-gradient(circle, rgba(75,107,245,.12), transparent 70%); pointer-events: none; }
+.login-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); font-weight: 600; margin-bottom: 8px; }
+.login-title { font-family: 'Bebas Neue', sans-serif; font-size: 50px; line-height: 1; margin-bottom: 6px; }
+.login-sub { font-size: 13px; color: var(--muted); margin-bottom: 36px; }
+

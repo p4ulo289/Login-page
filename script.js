@@ -20,3 +20,13 @@ function go(n) {
   timer = setInterval(() => go((cur + 1) % slides.length), 5000);
 }
 timer = setInterval(() => go((cur + 1) % slides.length), 5000);
+
+// TOAST
+function toast(msg, type = 'info', ms = 3200) {
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.textContent = msg;
+  document.getElementById('toasts').appendChild(t);
+  setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 320); }, ms);
+}
+
