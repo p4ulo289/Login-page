@@ -36,3 +36,13 @@ body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(
 .login-title { font-family: 'Bebas Neue', sans-serif; font-size: 50px; line-height: 1; margin-bottom: 6px; }
 .login-sub { font-size: 13px; color: var(--muted); margin-bottom: 36px; }
 
+/* TOAST */
+#toasts { position: fixed; top: 20px; right: 20px; z-index: 999; display: flex; flex-direction: column; gap: 8px; }
+.toast { display: flex; align-items: center; gap: 10px; padding: 13px 16px; border-radius: 8px; font-size: 13px; font-weight: 500; min-width: 260px; box-shadow: 0 6px 20px rgba(0,0,0,.5); animation: tin .3s ease; }
+.toast.success { background: #0d2b1a; color: #4d4; border-left: 4px solid #4d4; }
+.toast.error   { background: #2b0d0d; color: #f55; border-left: 4px solid #f55; }
+.toast.info    { background: #0d1a2b; color: #5af; border-left: 4px solid #5af; }
+.toast.out { animation: tout .3s ease forwards; }
+@keyframes tin  { from { transform: translateX(110%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes tout { to   { transform: translateX(110%); opacity: 0; } }
+
