@@ -114,3 +114,61 @@ function verifyUser(email, pass) {
   return users[email] && users[email].pass === pass;
 }
 
+function handleLogout() {
+  localStorage.removeItem(LS_KEY_AUTH);
+  location.reload();
+}
+
+
+// Se já está logado, já renderiza a área do cliente
+(() => {
+  try {
+    const raw = localStorage.getItem(LS_KEY_AUTH);
+
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data && data.loggedIn && data.email) {
+      renderLoggedIn(data.email);
+    }
+  } catch {
+    // ignore
+  }
+})();
+
+document.getElementById('btn-submit').addEventListener('click', function () {
+  const emailEl = document.getElementById('email');
+  const email = emailEl.value.trim();
+  const pass  = passEl.value;
+  const eOk = isEmail(email), pOk = pass.length >= 6;
+
+  setField(emailEl, 'e-err', eOk);
+  setField(passEl,  'p-err', pOk);
+  if (!eOk || !pOk) { toast('Corrija os campos em vermelho.', 'error'); return; }
+
+  // Só deixa logar se a conta foi criada antes
+  if (!verifyUser(email, pass)) {
+    toast('Crie sua conta primeiro para fazer login.', 'error', 5000);
+    return;
+  }
+
+
+  this.disabled = true;
+  document.getElementById('btn-txt').style.display = 'none';
+  document.getElementById('spin').style.display = 'block';
+
+  setTimeout(() => {
+    this.disabled = false;
+    document.getElementById('btn-txt').style.display = 'block';
+    document.getElementById('spin').style.display = 'none';
+
+    // Login "local" (sem conta demo). Mantém a sessão só no navegador.
+    try {
+      localStorage.setItem(LS_KEY_AUTH, JSON.stringify({ loggedIn: true, email }));
+
+    } catch {
+      // se falhar, ainda renderiza mesmo assim
+    }
+    renderLoggedIn(email);
+  }, 1200);
+});  
+
