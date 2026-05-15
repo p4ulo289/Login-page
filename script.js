@@ -45,3 +45,19 @@ document.getElementById('eye').addEventListener('click', function () {
   this.textContent = show ? '👁' : '🙈';
 });
 
+// PASSWORD STRENGTH
+passEl.addEventListener('input', function () {
+  const v = this.value;
+  const bar = document.getElementById('sbar');
+  const fill = document.getElementById('sfill');
+  if (!v) { bar.classList.remove('show'); return; }
+  bar.classList.add('show');
+  let s = 0;
+  if (v.length >= 6) s++;
+  if (v.length >= 10) s++;
+  if (/[A-Z]/.test(v)) s++;
+  if (/[0-9]/.test(v)) s++;
+  if (/\W/.test(v)) s++;
+  fill.style.width = (s / 5 * 100) + '%';
+  fill.style.background = ['#f55', '#f80', '#fc0', '#8d4', '#4d4'][s - 1] || '#f55';
+});

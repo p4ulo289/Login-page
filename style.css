@@ -83,3 +83,11 @@ body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(
 .reg-link { text-align: center; font-size: 13px; color: var(--muted); }
 .reg-link button { background: none; border: none; font-family: inherit; font-size: 13px; color: var(--blue); cursor: pointer; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
+/* ── MODAL ── */
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,.7); backdrop-filter: blur(4px); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .3s; }
+.overlay.open { opacity: 1; pointer-events: all; }
+.modal { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 36px; max-width: 420px; width: 90%; transform: translateY(16px); transition: transform .3s; position: relative; }
+.overlay.open .modal { transform: translateY(0); }
+.modal-close { position: absolute; top: 14px; right: 18px; background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer; }
+.modal h2 { font-family: 'Bebas Neue', sans-serif; font-size: 34px; margin-bottom: 6px; }
+.modal p  { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
