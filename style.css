@@ -1,0 +1,30 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #4B6BF5; --blue-dark: #3451d1;
+  --black: #0c0c0e; --panel: #16161a; --surface: #1e1e24;
+  --border: #2a2a33; --muted: #6b6b80; --white: #f0f0f5;
+}
+
+body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); height: 100vh; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; }
+
+/* ── SLIDESHOW ── */
+.slideshow { position: relative; overflow: hidden; }
+.slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 48px; }
+.slide.active { opacity: 1; }
+.slide-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(.5); transform: scale(1.06); transition: transform 6s ease; }
+.slide.active .slide-bg { transform: scale(1); }
+.slide-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(150deg, transparent 40%, rgba(75,107,245,.3)); }
+.slide-content { position: relative; z-index: 2; }
+.slide-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); font-weight: 600; margin-bottom: 10px; }
+.slide-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 5vw, 70px); line-height: .95; margin-bottom: 12px; }
+.slide-desc { font-size: 13px; color: rgba(240,240,245,.65); line-height: 1.6; max-width: 320px; }
+
+.brand { position: absolute; top: 36px; left: 44px; z-index: 10; }
+.brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 6px; }
+.brand-name span { color: var(--blue); }
+.brand-sub { font-size: 9px; letter-spacing: 2.5px; color: var(--muted); text-transform: uppercase; }
+
+.dots { position: absolute; bottom: 44px; right: 44px; z-index: 10; display: flex; gap: 7px; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.25); border: none; cursor: pointer; transition: background .3s, transform .3s; }
+.dot.active { background: var(--blue); transform: scale(1.35); }
